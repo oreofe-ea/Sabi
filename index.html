@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SabiThink — Think. Connect. Build.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">S</span><span>SabiThink</span></div>
+    <p class="muted nav-label">YOUR SPACE</p>
+    <a class="nav active" href="#"><span>⌂</span> Home</a>
+    <a class="nav" href="#"><span>◎</span> Knowledge Trees</a>
+    <a class="nav" href="#"><span>◇</span> Side Quests</a>
+    <a class="nav" href="#"><span>▣</span> My Notebook</a>
+    <a class="nav" href="#"><span>⌁</span> Sandbox</a>
+    <div class="sidebar-bottom">
+      <div class="mini-profile"><div class="avatar">E</div><div><b>Ebun</b><small>Curious Builder</small></div></div>
+      <button class="ghost">Settings</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand"><span class="brand-mark">S</span> SabiThink</div>
+      <div class="search"><span>⌕</span><input placeholder="What do you want to understand?"></div>
+      <div class="top-actions"><button class="icon-btn">♡</button><button class="avatar">E</button></div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">LEARN WITH PURPOSE</span>
+        <h1>Don't just know it.<br><em>Figure it out.</em></h1>
+        <p>SabiThink turns everyday curiosity into structured learning, research and real-world problem solving.</p>
+        <button class="primary" onclick="document.getElementById('trees').scrollIntoView({behavior:'smooth'})">Explore a knowledge tree →</button>
+      </div>
+      <div class="brain-art" aria-hidden="true">
+        <div class="orbit o1"></div><div class="orbit o2"></div>
+        <div class="brain">✦</div>
+        <span class="node n1">WHY?</span><span class="node n2">EVIDENCE</span><span class="node n3">HOW?</span><span class="node n4">BUILD</span>
+      </div>
+    </section>
+
+    <section class="daily">
+      <div><div><span class="eyebrow">TODAY'S THINK</span><h2>Why does Nigeria import food it can grow?</h2><p>10–15 min · Agriculture · Systems thinking</p></div><button class="outline" onclick="openQuest()">Start thinking →</button></div>
+      <div class="progress"><span></span></div>
+    </section>
+
+    <section id="trees">
+      <div class="section-head"><div><span class="eyebrow">KNOWLEDGE TREES</span><h2>Choose a question, not a course.</h2></div><button class="text-btn">View all →</button></div>
+      <div class="cards">
+        <article class="tree-card"><div class="tree-icon agri">🌱</div><span>BUILDING SYSTEMS</span><h3>Can Nigerian agriculture become genuinely mechanised?</h3><p>Trace land → labour → machinery → markets → food prices.</p><div class="meta"><span>7 nodes</span><span>32 min</span></div><button onclick="openTree('Agriculture')">Enter tree</button></article>
+        <article class="tree-card"><div class="tree-icon civic">◈</div><span>PUBLIC SYSTEMS</span><h3>What actually happens after a policy is announced?</h3><p>Follow a policy from document to implementation to citizen.</p><div class="meta"><span>6 nodes</span><span>28 min</span></div><button onclick="openTree('Public policy')">Enter tree</button></article>
+        <article class="tree-card"><div class="tree-icon money">₦</div><span>ECONOMICS</span><h3>Why do prices rise when your salary doesn't?</h3><p>Build your own simple inflation and purchasing-power model.</p><div class="meta"><span>8 nodes</span><span>35 min</span></div><button onclick="openTree('Economics')">Enter tree</button></article>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="panel">
+        <div class="section-head"><div><span class="eyebrow">YOUR NOTEBOOK</span><h2>Think it through.</h2></div><span class="streak">3-day streak</span></div>
+        <div class="note"><span class="tag root">ROOT CAUSE</span><p>“The problem isn't simply that farmers lack machines. I need to investigate access, scale, finance and whether the machines fit local farm structures.”</p><small>Mechanised agriculture · 8 min ago</small></div>
+        <div class="note"><span class="tag leverage">LEVERAGE POINT</span><p>“A shared equipment service might solve the ownership problem before everyone needs to buy a tractor.”</p><small>Mechanised agriculture · yesterday</small></div>
+      </div>
+      <div class="panel sandbox-preview">
+        <span class="eyebrow">SANDBOX</span><h2>Turn knowledge into a model.</h2>
+        <div class="flow"><div>PROBLEM</div><b>→</b><div>CAUSE</div><b>→</b><div>LEVER</div><b>→</b><div>RESULT</div></div>
+        <button class="outline" onclick="openSandbox()">Open sandbox</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="questModal">
+    <div class="modal-box">
+      <button class="close" onclick="closeQuest()">×</button>
+      <span class="eyebrow">THINK, DON'T CRAM</span>
+      <h2>Why does Nigeria import food it can grow?</h2>
+      <p class="modal-intro">Read the short evidence pack, then explain the problem in your own words. There is no “perfect” answer.</p>
+      <div class="evidence"><b>Evidence 01</b><p>Start with agricultural productivity, infrastructure, access to finance, storage, logistics and market incentives. Which of these is a root cause, and which is an effect?</p></div>
+      <label>Your synthesis</label>
+      <textarea id="synthesis" placeholder="Explain what you think is happening, in your own words..."></textarea>
+      <div class="tags"><button>Root cause</button><button>Leverage point</button><button>Evidence</button><button>Question</button></div>
+      <button class="primary full" onclick="submitThought()">Save my thinking</button>
+      <p id="saved" class="saved"></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
